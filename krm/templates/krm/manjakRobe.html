@@ -1,0 +1,40 @@
+{% extends 'krm/base.html' %}
+
+{% block title %}Manjak robe{% endblock %}
+{% block a7 %}active{% endblock %}
+
+{% block body %}
+<h1>Manjak robe u skladištu</h1>
+{% if all_materijal %}
+<hr>
+<table class="table table-sm table-striped table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Naziv</th>
+        <th>Šifra</th>
+        <th>Mj.</th>
+        <th>Količina</th>
+        <th>Cijena</th>
+        <th>Vrijednost</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for materijal in all_materijal %}
+        <tr>
+            <td>{{ materijal.id }}</td>
+            <td>{{ materijal.naziv }}</td>
+            <td>{{ materijal.sifra }}</td>
+            <td>{{ materijal.mjerna_jedinica }}</td>
+            <td>{{ materijal.skladiste_kolicina }}</td>
+            <td>{{ materijal.cijena }}</td>
+            <td>{{ materijal.vrijednost }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <hr>
+  {% else %}
+    <h2>Nema manjka robe</h2>
+  {% endif %}
+{% endblock %}

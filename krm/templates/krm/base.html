@@ -1,0 +1,71 @@
+<!-- path do static fileova -->
+{% load static %} 
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}KRM{% endblock %}</title>
+        
+        
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet"  text="text/css" href="{% static 'bootstrap/bootstrap.css' %}">
+
+        {% block head %}
+        {% endblock %}
+
+        <link rel="stylesheet" text="text/css" href="{% static 'style.css' %}" />
+
+        {% block head2 %}
+        {% endblock %}
+
+    </head>
+
+    <body>
+
+
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+            <div class="container-xl">
+                <a href="{% url 'info' %}" class="navbar-brand"><img src="{% static 'slike/sLOGO-transparent2.png' %}" alt="LUK INSTALACIJE" height="50"></a>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navMenu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navMenu">
+                    <ul class="navbar-nav md-auto">
+                        <li class="nav-item {% block a1 %}{% endblock %}"> <a class="nav-link" href="{% url 'index' %}">KRM</a> </li>
+                        <li class="nav-item {% block a2 %}{% endblock %}"> <a class="nav-link" href="{% url 'ulazniRacun' %}">Ulazni račun</a> </li>
+                        <li class="nav-item {% block a3 %}{% endblock %}"> <a class="nav-link" href="{% url 'izlazniRacun' %}">Izlazni račun</a> </li>
+                        <li class="nav-item {% block a4 %}{% endblock %}"> <a class="nav-link" href="{% url 'racuni' %}">Računi</a> </li>
+                        <li class="nav-item {% block a5 %}{% endblock %}"> <a class="nav-link" href="{% url 'objekti' %}">Objekti</a> </li>
+                        <li class="nav-item {% block a6 %}{% endblock %}"> <a class="nav-link" href="{% url 'inventura' %}">Inventura</a> </li>
+                        <li class="nav-item {% block a7 %}{% endblock %}"> <a class="nav-link" href="{% url 'manjakRobe' %}">Manjak robe</a> </li>
+                    </ul>
+                </div>
+            </div>
+          </nav>
+
+       
+
+        <div class="container-xl pt-2" >
+            {% block body %}
+            {% endblock %}
+        </div>
+        
+        
+
+    <!-- jQuery library -->
+    <script src="{% static 'bootstrap/jquery.min.js' %}"></script>
+    <!-- Popper JS -->
+    <script src="{% static 'bootstrap/popper.min.js' %}"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+
+    {% block bottom %}
+    {% endblock %}
+
+    </body>
+</html>

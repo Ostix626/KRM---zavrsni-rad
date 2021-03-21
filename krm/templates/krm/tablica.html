@@ -1,0 +1,53 @@
+{% extends 'krm/base.html' %}
+{% load krm_tags %}
+
+{% block a1 %}active{% endblock %}
+
+{% block body %}
+{% if materijal %}
+{% for n in naziv %}
+  <h4>Naziv materijala: {{ n.naziv }}</h2>
+{% endfor %}
+<h6>Porezni obveznik: /</h4>
+<h6>Mjesto: /</h4>
+  <hr>
+  <table class="table table-sm table-striped table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>Redni broj</th>
+          <th>Datum knjiženja</th>
+          <th>Broj računa</th>
+          <th>Opis</th>
+          <th>Nabava / Uporaba</th>
+          <th>Jedinica mjere</th>
+          <th>Količina</th>
+          <th>Cijena (kn)</th>
+          <th>Svota (kn)</th>
+          <th>Stanje-Količina</th>
+          <th>Stanje-Svota (kn)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for krm in materijal %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ krm.racunID.datum|date:"d.m.Y." }}</td>
+          <td>{{ krm.racunID.broj_racuna }}</td>
+          <td>{{ krm.racunID.firma }}</td>
+          <td>{{ krm.racunID.ulaz_izlaz }}</td>
+          <td>{{ krm.materijalID.mjerna_jedinica }}</td>
+          <td>{{ krm.kolicina }}</td>
+          <td>{{ krm.materijalID.cijena }}</td>
+          <td>{% multiply krm.kolicina krm.materijalID.cijena %}</td>
+          <td>{{ krm.datum_kolicina_skladiste }}</td>
+          <td>{% multiply krm.datum_kolicina_skladiste krm.materijalID.cijena %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+  <hr>
+{% else %}
+  <h2>Nema krm tablice za ovaj materijal</h2>
+{% endif %}    
+
+{% endblock %}
